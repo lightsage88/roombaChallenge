@@ -32,12 +32,14 @@ class Square extends React.Component {
       roombaLocations: this.props.roombaLocations
     })
     this.containsDirtPile()
-    this.hasRoomba()
+    // this.hasRoomba()
 
   }
 
   componentDidUpdate = (prevState) => {
-    if(this.state != prevState) {
+    if(this.state.hasDirt != prevState.hasDirt ||
+        this.state.hasRoomba != prevState.hasRoomba
+      ) {
       this.containsDirtPile()
       this.hasRoomba()
     }
@@ -70,9 +72,21 @@ class Square extends React.Component {
     }
   }
 
+  roombaDiscoversDirt = () => {
+    if(this.state.hasDirt){
+      this.setState({
+        hasDirt: false,
+        hadDirt: true
+      })
+      this.props.alertToAddDirt()
+    }
+  }
+
   render() {
     this.containsDirtPile()
     if(this.state.hasRoomba && this.state.hasDirt) {
+      // this.setState({ hasDirt: false})
+      this.roombaDiscoversDirt()
       return(
         <div>
           <Roomba />

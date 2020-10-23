@@ -12,6 +12,11 @@ class Map extends React.Component {
     }
   }
 
+  alertToAddDirt = () => {
+    console.log('alertToAddDirtRunning')
+    this.props.addDirt()
+  }
+
   componentDidMount = () => {
     console.log(this.props)
     let roombaLocArray = []
@@ -68,6 +73,7 @@ class Map extends React.Component {
               key={randomKeyGen}
               dirtLocations={this.props.dirtLocations}
               roombaLocations={this.state.roombaLocations}
+              alertToAddDirt={() => this.alertToAddDirt()}
             />
           </td>
         )
