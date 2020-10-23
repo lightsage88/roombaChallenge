@@ -7,31 +7,40 @@ class Map extends React.Component {
     this.state = {
       length: null,
       height: null,
-      dirtLocation: []
-    }
-  }
-
-  componentDidUpdate = (prevProps) => {
-    if(this.props !== prevProps) {
-      console.log(this.props)
-      this.setState({
-        length: this.props.maxX,
-        height: this.props.maxY,
-        dirtLocations: this.props.dirtLocations
-      })
+      dirtLocation: [],
+      roombaLocations: []
     }
   }
 
   componentDidMount = () => {
     console.log(this.props)
+    let roombaLocArray = []
+    roombaLocArray.push(this.props.roombaLocation)
+
     this.setState({
       length: this.props.maxX,
       height: this.props.maxY,
-      dirtLocations: this.props.dirtLocations
-
+      dirtLocations: this.props.dirtLocations,
+      roombaLocations: roombaLocArray
 
     })
   }
+
+  componentDidUpdate = (prevProps) => {
+    if(this.props !== prevProps) {
+      let roombaLocArray = [this.state.roombaLocations]
+      roombaLocArray.push(this.props.roombaLocation)
+      console.log(this.props)
+      this.setState({
+        length: this.props.maxX,
+        height: this.props.maxY,
+        dirtLocations: this.props.dirtLocations,
+        roombaLocations: roombaLocArray
+      })
+    }
+  }
+
+
 
   printGrid = (arr) => {
     return arr.map(row => {
@@ -39,23 +48,6 @@ class Map extends React.Component {
     })
   }
 
-  //move this op to the square tiles?
-  hasDirt = (x, y) => {
-    let dirtLocArr = this.state.dirtLocations
-    console.log("has dirt running...", "X is: " + x, "Y is: " + y)
-    let value
-    dirtLocArr.forEach(el => {
-      if(el[0] - 1 === x && el[1] - 1 === y) {
-        console.log(el, x, y)
-        value = true
-
-      } else {
-        value = false
-      }
-    })
-    console.log(value)
-    return value
-  }
 
   render() {
     console.log(this.state.dirtLocations)
@@ -75,6 +67,7 @@ class Map extends React.Component {
               y={i}
               key={randomKeyGen}
               dirtLocations={this.props.dirtLocations}
+              roombaLocations={this.state.roombaLocations}
             />
           </td>
         )
