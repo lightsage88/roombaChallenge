@@ -74,7 +74,7 @@ class Map extends React.Component {
               x={c}
               y={i}
               key={randomKeyGen}
-              hasDirt={this.hasDirt(c, i)}
+              dirtLocations={this.props.dirtLocations}
             />
           </td>
         )
