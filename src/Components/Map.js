@@ -18,29 +18,29 @@ class Map extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props)
-    let roombaLocArray = []
-    roombaLocArray.push(this.props.roombaLocation)
+    // console.log(this.props)
+    // let roombaLocArray = []
+    // roombaLocArray.push(this.props.roombaLocation)
 
     this.setState({
       length: this.props.maxX,
       height: this.props.maxY,
       dirtLocations: this.props.dirtLocations,
-      roombaLocations: roombaLocArray
+      // roombaLocations: roombaLocArray
 
     })
   }
 
   componentDidUpdate = (prevProps) => {
     if(this.props !== prevProps) {
-      let roombaLocArray = [this.state.roombaLocations]
-      roombaLocArray.push(this.props.roombaLocation)
+      // let roombaLocArray = [this.state.roombaLocations]
+      // roombaLocArray.push(this.props.roombaLocation)
       console.log(this.props)
       this.setState({
         length: this.props.maxX,
         height: this.props.maxY,
         dirtLocations: this.props.dirtLocations,
-        roombaLocations: roombaLocArray
+        // roombaLocations: roombaLocArray
       })
     }
   }
@@ -55,7 +55,7 @@ class Map extends React.Component {
 
 
   render() {
-    console.log(this.state.dirtLocations)
+    console.log(this.state.dirtLocations, this.props.roombaLocation)
     const length = this.state.length
     const height = this.state.height
     let randomKeyGen = Math.floor((Math.random() * 100000) + 1)
@@ -71,9 +71,7 @@ class Map extends React.Component {
               x={c}
               y={i}
               key={randomKeyGen}
-              dirtLocations={this.props.dirtLocations}
-              roombaLocations={this.state.roombaLocations}
-              alertToAddDirt={() => this.alertToAddDirt()}
+              roombaLocation={this.props.roombaLocation}
             />
           </td>
         )

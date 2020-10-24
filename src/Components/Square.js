@@ -2,6 +2,8 @@ import React from 'react'
 import mapSquare from '../Assets/parchmentSquare.jpg'
 import dirtSquare from '../Assets/dirtSquare.jpg'
 import Roomba from './Roomba'
+let data = require('../roombaInstructionData.json')
+
 
 
 
@@ -16,77 +18,85 @@ class Square extends React.Component {
         x: null,
         y: null
       },
-      dirtLocations: [],
-      roombaLocations: []
+      roombaLocation: {
+        x: null,
+        y:null
+      },
+      dirtLocations: data.dirtLocations,
+      roombaLocations: [],
     }
   }
 
   componentDidMount = () => {
-    // console.log(this.props)
+    console.log(this.props)
     this.setState({
       id: {
         x: this.props.x,
         y: this.props.y,
       },
-      dirtLocations: this.props.dirtLocations,
-      roombaLocations: this.props.roombaLocations
+      roombaLocation: {
+        x: this.props.roombaLocation[0] - 1,
+        y: this.props.roombaLocation[1] - 1
+      },
+      roombaLocations: []
     })
-    this.containsDirtPile()
+    // this.containsDirtPile()
     // this.hasRoomba()
+    // this.roombaCheck()
 
   }
 
   componentDidUpdate = (prevState) => {
-    if(this.state.hasDirt != prevState.hasDirt ||
-        this.state.hasRoomba != prevState.hasRoomba
-      ) {
-      this.containsDirtPile()
-      this.hasRoomba()
-    }
+    console.log('compDU running')
+    if(this.state.id.x === this.state.roombaLocation.x &&
+      this.state.id.y === this.state.roombaLocation.y){
+    this.roombaCheck()
+      }
   }
 
-  hasRoomba = () => {
-    if(!this.state.hadRoomba){
-      console.log('running hasroomba', this.state,
-      this.props.roombaLocations[this.props.roombaLocations.length - 1][0],
-      this.props.roombaLocations[this.props.roombaLocations.length - 1][1])
-      if(this.props.roombaLocations[this.props.roombaLocations.length - 1][0] - 1 === this.state.id.x &&
-        this.props.roombaLocations[this.props.roombaLocations.length - 1][1] -1 === this.state.id.y) {
+  roombaCheck = () => {
+    console.log(this.state.id, this.state.roombaLocation)
+    
+    if(!this.state.hasRoomba &&
+      this.state.id.x === this.state.roombaLocation.x &&
+       this.state.id.y === this.state.roombaLocation.y
+        ) {
+          console.log(this.state.id, this.state.roombaLocation, "pigs")
+
           this.setState({
             hasRoomba: true,
-            hadRoomba: true
+            // hadRoomba: true,
+
           })
         }
-    }
+    
   }
 
   containsDirtPile = () => {
-    if(!this.state.hasDirt) {
     this.state.dirtLocations.forEach(el => {
-      if(el[0] - 1 === this.state.id.x && el[1] - 1 === this.state.id.y) {
+      if(el[0] - 1 === this.state.id.x 
+        && el[1] - 1 === this.state.id.y
+        && !this.state.hasDirt) {
         this.setState({
-          hasDirt: true
+          hasDirt: true,
         })
       }
     })
-    }
+    // this.state.dirtLocations.forEach(el => {
+    //   if(el[0] - 1 === this.state.id.x && el[1] - 1 === this.state.id.y) {
+    //     this.setState({
+    //       hasDirt: true
+    //     })
+    //   }
+    // })
+    // }
   }
 
-  roombaDiscoversDirt = () => {
-    if(this.state.hasDirt){
-      this.setState({
-        hasDirt: false,
-        hadDirt: true
-      })
-      this.props.alertToAddDirt()
-    }
-  }
+
 
   render() {
     this.containsDirtPile()
     if(this.state.hasRoomba && this.state.hasDirt) {
-      // this.setState({ hasDirt: false})
-      this.roombaDiscoversDirt()
       return(
         <div>
           <Roomba />

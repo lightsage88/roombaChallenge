@@ -9,16 +9,12 @@ class App extends React.Component {
   constructor() { 
     super()
     this.state = {
-      roombaLocation: [1, 1],
+      roombaLocation: data.initialRoombaLocation,
+      travelLog: [data.initialRoombaLocation],
       bumpCounter: 0,
       mapMaxY: data.roomDimensions[1],
       mapMaxX: data.roomDimensions[0],
-      dirtLocations: [
-        [1,2],
-        [3,5],
-        [5,5],
-        [7,9]
-      ],
+      dirtLocations: data.dirtLocations,
       drivingInstructions: data.drivingInstructions,
       movementCounter: 0,
       dirtCollected: 0
@@ -27,7 +23,34 @@ class App extends React.Component {
 
   componentDidMount = () => {
     console.log(data)
-    this.autoPilot()
+    
+    // this.autoPilot()
+  }
+
+  componentDidUpdate = (prevState) => {
+    if(this.state.roombaLocation != prevState.roombaLocation) {
+      let travelLogArr = this.state.travelLog
+      travelLogArr.push(this.state.roombaLocation)
+      this.setState({
+        travelLog: travelLogArr
+      })
+    }
+    // let dirtSquares = this.state.dirtLocations
+    // if(this.state.roombaLocation != prevState.roombaLocation &&
+    //   this.state.dirtCollected <= dirtSquares.length
+    //   ) {
+    //   dirtSquares.forEach(el => {
+    //     console.log('CDUpdate', el, this.state.roombaLocation)
+        
+    //     if(this.state.roombaLocation[0] === el[0] && this.state.roombaLocation[1] === el[1]) {
+    //       console.log('yeehaw')
+    //       alert(this.state.roombaLocation)
+    //       this.setState({
+    //         dirtCollected: this.state.dirtCollected++
+    //       })
+    //     }
+    //   })
+    // }
   }
 
   autoPilot = () => {
@@ -99,6 +122,7 @@ class App extends React.Component {
       dirtCollected: dirtPile
     })
   }
+
 
   goNorth = () => {
     let currentLocation = this.state.roombaLocation
