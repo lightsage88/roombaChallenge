@@ -6,9 +6,22 @@ let data = require('../roombaInstructionData.json')
 
 
 
-function Square() {
-  // console.log('Square here', this.props)
- 
+function Square(props) {
+  // console.log('Square here', props)
+  if(props.hasRoomba) {
+    return( 
+      <div>
+        <Roomba />
+      </div>
+    )
+  } else {
+    return (
+      <div className="regularTreasureMapSquare">
+      </div>
+    )
+  }
+
+
     // if(this.props.hasRoomba && this.props.hasDirt) {
     //         return(
     //           <div>
@@ -27,10 +40,7 @@ function Square() {
     //           </div>
     //         )
     //       }   else {
-            return (
-              <div className="regularTreasureMapSquare">
-              </div>
-            )
+            
           // }
   
 

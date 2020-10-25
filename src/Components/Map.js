@@ -10,6 +10,7 @@ class Map extends React.Component {
       dirtLocations: [],
       roombaLocation: [],
       travelLog: [],
+      travelLogRunning: false,
       actionLog: []
     }
   }
@@ -20,6 +21,7 @@ class Map extends React.Component {
   }
 
   componentDidMount = () => {
+    this.convertTravelLogEntries(this.props.travelLog)
 
     this.setState({
       length: this.props.maxX,
@@ -34,21 +36,50 @@ class Map extends React.Component {
   }
 
   componentDidUpdate = (prevProps) => {
+    console.log('componentUpdating', prevProps, this.props)
     //1. putting setState chunk here crashes everyhing
     //2. Lets try doing a comparison with prevProps
     //2a. That seems successful!
+
+    if(this.props.travelLog.length !== this.state.travelLog.length && !this.state.travelLogRunning) {
+      console.log('detected change in TL')
+      this.setState({travelLogRunning: true})
+      this.convertTravelLogEntries(this.props.travelLog)
+    }
+
     if(prevProps !== this.props) {
       this.setState({
         length: this.props.maxX,
         height: this.props.maxY,
         dirtLocations: this.props.dirtLocations,
-        travelLog: this.props.travelLog,
+        // travelLog: this.props.travelLog,
         actionLog: this.props.actionLog,
         roombaLocation: this.props.roombaLocation
         // roombaLocations: roombaLocArray
   
       })
     }
+
+    
+  }
+
+  convertTravelLogEntries = (arr) => {
+    let newArr = []
+    console.log(arr)
+    let a = arr
+    let b = Array.from(a)
+    console.log(b)
+    newArr= b.map(el => {
+      console.log(el)
+      console.log(typeof(el))
+      console.log(el.split`,`.map(x => +x))
+      return el.split`,`.map(x => +x)
+    })
+    console.log('newArr', newArr)
+    this.setState({
+      travelLog: newArr,
+      travelLogRunning: false
+    })
   }
 
 
@@ -59,9 +90,22 @@ class Map extends React.Component {
     })
   }
 
-  hasRoomba = (c, i) => {
+  previouslyHadRoomba = (x, y) => {
+    //look through travelLog, make arrays out of each "ENTRY"
+    console.log(this.state.travelLog)
+    //say that if c, i match any of them, EXCEPT THE LAST ENTRY,
+    //return true
+  }
+
+  hasRoomba = (x, y) => {
     console.log('hasDirt running...current roomba location is: ' + this.state.roombaLocation)
-    console.log('coordinates of square are: ' + c + ', ' + i)
+    console.log('coordinates of square are: ' + x + ', ' + y)
+    if(this.state.roombaLocation[0] === x + 1 &&
+      this.state.roombaLocation[1] === y + 1) {
+        return true
+      } else {
+        return false
+      }
   }
 
 
@@ -85,6 +129,7 @@ class Map extends React.Component {
               key={randomKeyGen}
               roombaLocation={this.props.roombaLocation}
               hasRoomba={this.hasRoomba(c, i)}
+              hadRoomba={this.previouslyHadRoomba(c, i)}
             />
           </td>
         )
