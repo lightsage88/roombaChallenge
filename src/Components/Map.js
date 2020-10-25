@@ -8,7 +8,7 @@ class Map extends React.Component {
       length: null,
       height: null,
       dirtLocations: [],
-      roombaLocation: [],
+      roombaLocation: [], 
       travelLog: [],
       travelLogRunning: false,
       actionLog: []
