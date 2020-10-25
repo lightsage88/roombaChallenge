@@ -127,6 +127,9 @@ class App extends React.Component {
 
   checkForDirt = () => {
     console.log("checkForDirt Running")
+    this.setState({
+      dirtCollected: this.dirtCollected++
+    })
   }
 
   updateTravelLog = () => {
@@ -220,6 +223,7 @@ class App extends React.Component {
           addDirt={() => this.increaseDirtCollected()}
           travelLog={this.state.travelLog}
           actionLog={this.state.actionLog}
+          checkForDirt={(e) => this.checkForDirt()}
         />
         <StatBox data={this.state}/>
         <button 

@@ -72,12 +72,22 @@ class Map extends React.Component {
     })
   }
 
-
-
   printGrid = (arr) => {
     return arr.map(row => {
       return <tr>{row}</tr>
     })
+  }
+
+  hasDirt = (x, y) => {
+    let bool = false
+    this.state.dirtLocations.forEach(el => {
+      if(el[0] === x + 1 &&
+        el[1] === y + 1 &&
+        bool === false) {
+          bool = true
+        }
+    })
+    return bool
   }
 
   previouslyHadRoomba = (x, y) => {
@@ -109,6 +119,10 @@ class Map extends React.Component {
       }
   }
 
+  checkForDirtInMap = () => {
+    this.props.checkForDirt()
+  }
+
 
   render() {
     console.log(this.state.dirtLocations, this.props.roombaLocation)
@@ -122,6 +136,8 @@ class Map extends React.Component {
 
       for(let c = 0; c < height; c++) {
         console.log("coordinates being planned", c, i)
+        //check for dirt collected
+        // this.checkForDirtInMap()
         row.push(
           <td>
             <Square 
@@ -131,6 +147,8 @@ class Map extends React.Component {
               roombaLocation={this.props.roombaLocation}
               hasRoomba={this.hasRoomba(c, i)}
               hadRoomba={this.previouslyHadRoomba(c, i)}
+              hasDirt={this.hasDirt(c, i)}
+              foundDirt={this.props.checkForDirt}
             />
           </td>
         )

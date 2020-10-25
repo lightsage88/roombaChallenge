@@ -37,6 +37,13 @@
   }
 }
 
+.dirtSquare {
+  background-image: url('./Assets/dirtSquare.jpg');
+  width: 2rem;
+  height: 2rem;
+  background-position: center;
+}
+
 .regularTreasureMapSquare {
   background-image: url('./Assets/parchmentSquare.jpg');
   width: 2rem;
