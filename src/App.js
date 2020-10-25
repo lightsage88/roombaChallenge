@@ -20,7 +20,7 @@ class App extends React.Component {
       foundDirtLocations: [],
       drivingInstructions: data.drivingInstructions,
       movementCounter: 0,
-      turnCounter: 1,
+      turnCounter: 0,
       dirtCollected: 0
     }
   }

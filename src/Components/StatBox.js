@@ -33,6 +33,18 @@ class StatBox extends React.Component {
 
   render() {
 
+    const turnRows = this.state.turnCollection.map((el, idx) => {
+      return(
+        <tr>
+          <td>{ el.turn }</td>
+          <td>{ el.roombaLocation }</td>
+          <td>{ el.action }</td>
+          <td>{ el.totalDirtCollected }</td>
+          <td>{ el.totalWallHits }</td>
+        </tr>
+      )
+    })
+
     const dirtLocations = this.props.dirtLocations.map((el, idx) => {
       return (
         <li key={idx}>{JSON.stringify(el)}</li>
@@ -58,9 +70,7 @@ class StatBox extends React.Component {
             <th>Total Dirt Collected</th>
             <th>Total Wall Hits</th>
           </tr>
-          {/* {
-            dataRows
-          } */}
+          {turnRows}
         </table>
       </div>
     )
