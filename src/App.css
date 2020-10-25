@@ -37,11 +37,24 @@
   }
 }
 
+.mapSquare {
+  transition: 0.5s;
+  transition-timing-function: linear;
+}
+
 .dirtSquare {
   background-image: url('./Assets/dirtSquare.jpg');
   width: 2rem;
   height: 2rem;
   background-position: center;
+}
+
+.roombaSquare {
+  background-image: url('./Assets/roombaKnife.png');
+  width: 2rem;
+  height: 2rem;
+  background-position: center;
+  background-size: cover;
 }
 
 .regularTreasureMapSquare {

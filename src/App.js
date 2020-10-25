@@ -62,22 +62,22 @@ class App extends React.Component {
         console.log(commands[i])
         if(commands[i] === "N") {
           this.goNorth()
-          await this.waitForPromise(2000)
+          await this.waitForPromise(1000)
         }
 
         if(commands[i] === "S") {
           this.goSouth()
-          await this.waitForPromise(2000)
+          await this.waitForPromise(1000)
         }
 
         if(commands[i] === "E") {
           this.goEast()
-          await this.waitForPromise(2000)
+          await this.waitForPromise(1000)
         }
 
         if(commands[i] === "W") {
           this.goWest()
-          await this.waitForPromise(2000)
+          await this.waitForPromise(1000)
         }
 
       }
