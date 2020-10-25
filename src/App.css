@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Atari;
+  src: url('./Fonts/atari.ttf')
+}
+
+* {
+  font-family: "Atari", sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -85,14 +94,19 @@
 
 .regularTreasureMapSquare {
   background-image: url('./Assets/parchmentSquare.jpg');
-
   background-position: center;
+  background-size: cover;
 }
 
 .fireSquare {
   background-image: url('./Assets/fire.jpg');
-
   background-position: center;
+}
+
+.dugSquare {
+  background-image: url('./Assets/redX.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 .treasureMapSquare {
@@ -104,11 +118,21 @@
   flex-direction: column;
 }
 
+#statBoxDiv {
+  font-size: 1.2rem;
+  padding: 1vw;
+}
+
+#dirtLocationsUL {
+  list-style: none;
+  padding: 0;
+}
+
 #statTable {
   width: 90%;
   padding: 3vw;
   margin: auto;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #statTable th {
@@ -134,11 +158,21 @@
   #statTable {
     width: 80%;
   }
+
+  .generalSquare {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  #mapAndStatBoxDiv {
+    flex-direction: unset;
+    width: fit-content;
+    margin: auto;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
   #mapAndStatBoxDiv {
-    flex-direction: unset;
     justify-content: space-evenly;
   }
 }

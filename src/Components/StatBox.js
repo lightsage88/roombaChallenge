@@ -11,8 +11,6 @@ class StatBox extends React.Component {
 
   componentDidUpdate = (prevProps) => {
     if(this.props.turnCounter != prevProps.turnCounter) {
-      console.log(this.props)
-      console.log(typeof(this.props.roombaLocation))
     let arr = this.state.turnCollection
     const rL = this.props.roombaLocation
 
@@ -57,8 +55,8 @@ class StatBox extends React.Component {
         <p>Total Movements: {this.props.movementCounter}</p>
         <p>Dirt Collected: {this.props.dirtCollected}</p>
 
+        <ul id="dirtLocationsUL">
         <p>Dirt Locations:</p>
-        <ul>
           {dirtLocations}
         </ul>
         <p>Bumps: {this.props.bumps}</p>

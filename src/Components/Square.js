@@ -2,7 +2,11 @@ import React from 'react'
 
 function Square(props) {
   let classPick = "dirtSquare"
-  if(props.hasDirt) {
+  if (props.hasDirt && props.hadRoomba) {
+    classPick = "dugSquare"
+  } else if (props.hasDirt && props.hasRoomba) {
+    classPick = "generalRoombaSquare roombaSquare"
+  } else if(props.hasDirt) {
     classPick = "dirtSquare"
   } else if(props.hasRoomba) {
     classPick = "generalRoombaSquare roombaSquare"

@@ -11,8 +11,6 @@ class StatTable extends React.Component {
 
   componentDidUpdate = (prevProps) => {
     if(this.props.turnCounter != prevProps.turnCounter) {
-      console.log(this.props)
-      console.log(typeof(this.props.roombaLocation))
     let arr = this.state.turnCollection
     const rL = this.props.roombaLocation
 
