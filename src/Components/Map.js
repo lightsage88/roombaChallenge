@@ -30,8 +30,6 @@ class Map extends React.Component {
       travelLog: this.props.travelLog,
       actionLog: this.props.actionLog,
       roombaLocation: this.props.roombaLocation
-      // roombaLocations: roombaLocArray
-
     })
   }
 
@@ -52,10 +50,8 @@ class Map extends React.Component {
         length: this.props.maxX,
         height: this.props.maxY,
         dirtLocations: this.props.dirtLocations,
-        // travelLog: this.props.travelLog,
         actionLog: this.props.actionLog,
         roombaLocation: this.props.roombaLocation
-        // roombaLocations: roombaLocArray
   
       })
     }
@@ -65,17 +61,11 @@ class Map extends React.Component {
 
   convertTravelLogEntries = (arr) => {
     let newArr = []
-    console.log(arr)
     let a = arr
     let b = Array.from(a)
-    console.log(b)
     newArr= b.map(el => {
-      console.log(el)
-      console.log(typeof(el))
-      console.log(el.split`,`.map(x => +x))
       return el.split`,`.map(x => +x)
     })
-    console.log('newArr', newArr)
     this.setState({
       travelLog: newArr,
       travelLogRunning: false
@@ -92,9 +82,20 @@ class Map extends React.Component {
 
   previouslyHadRoomba = (x, y) => {
     //look through travelLog, make arrays out of each "ENTRY"
-    console.log(this.state.travelLog)
+    let bool = false
+
+    let array = this.state.travelLog.slice(0, this.state.travelLog.length - 1)
+    console.log('ze array', array)
+    array.forEach(el => {
+      if(el[0] === x + 1 &&
+        el[1] === y + 1 &&
+        bool === false ) {
+          bool = true
+        } 
+    })
     //say that if c, i match any of them, EXCEPT THE LAST ENTRY,
     //return true
+    return bool
   }
 
   hasRoomba = (x, y) => {

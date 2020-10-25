@@ -42,7 +42,13 @@
   width: 2rem;
   height: 2rem;
   background-position: center;
+}
 
+.fireSquare {
+  background-image: url('./Assets/fire.jpg');
+  width: 2rem;
+  height: 2rem;
+  background-position: center;
 }
 
 .treasureMapSquare {

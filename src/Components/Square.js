@@ -14,6 +14,11 @@ function Square(props) {
         <Roomba />
       </div>
     )
+  } else if(props.hadRoomba) { 
+    return(
+      <div className="fireSquare">
+      </div>
+    )
   } else {
     return (
       <div className="regularTreasureMapSquare">
