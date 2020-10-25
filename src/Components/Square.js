@@ -5,7 +5,7 @@ function Square(props) {
   if(props.hasDirt) {
     classPick = "dirtSquare"
   } else if(props.hasRoomba) {
-    classPick = "roombaSquare"
+    classPick = "generalRoombaSquare roombaSquare"
   } else if (props.hadRoomba) {
     classPick = "fireSquare"
   } else {
@@ -13,7 +13,7 @@ function Square(props) {
   }
   
   return (
-    <div className={classPick}></div>
+    <div className={"generalSquare " + classPick}></div>
   )
 }
 

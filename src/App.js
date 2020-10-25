@@ -1,5 +1,4 @@
 import React from 'react';
-// import update from 'immutability-helper' 
 import './App.css'; 
 import Map from './Components/Map'
 import StatBox from './Components/StatBox'
@@ -10,7 +9,8 @@ class App extends React.Component {
   constructor() { 
     super()
     this.state = {
-      roombaLocation: [],
+      // roombaLocation: [],
+      roombaLocation: data.initialRoombaLocation,
       travelLog: [],
       actionLog: [" "],
       bumpCounter: 0,
@@ -20,8 +20,8 @@ class App extends React.Component {
       foundDirtLocations: [],
       drivingInstructions: data.drivingInstructions,
       movementCounter: 0,
-      dirtCollected: 0,
-      autoPilotRunning: false
+      turnCounter: 1,
+      dirtCollected: 0
     }
   }
 
@@ -29,7 +29,7 @@ class App extends React.Component {
     const roombaStart = data.initialRoombaLocation
   
     this.setState({
-      roombaLocation: data.initialRoombaLocation,
+      // roombaLocation: data.initialRoombaLocation,
       travelLog: [roombaStart.join(",")]
     })    
     this.autoPilot()
@@ -50,7 +50,6 @@ class App extends React.Component {
     const waitForPromise = (ms) => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          console.log('waiting in WAITFORPROMISE')
           resolve(ms)
         }, ms)
       })
@@ -59,7 +58,7 @@ class App extends React.Component {
     let commands = this.state.drivingInstructions
     setTimeout(async() => {
       for(let i = 0; i <= commands.length; i++) {
-        console.log(commands[i])
+        this.setState({ turnCounter: this.state.turnCounter + 1 })
         if(commands[i] === "N") {
           this.goNorth()
           await this.waitForPromise(1000)
@@ -81,55 +80,7 @@ class App extends React.Component {
         }
 
       }
-    }, 4000)
-    // setTimeout(() => {
-    //     console.log('howdy', this.state.drivingInstructions)
-    //     commands.forEach(el => {
-    //       switch(el) {
-    //         case "N" :
-    //           setTimeout(async () => {
-    //             this.goNorth()
-    //             await this.waitForPromise(6000)
-
-    //           }, 5000) 
-    //           console.log("N")
-    //           break
-    //         case "S" :
-    //           setTimeout(async () => {
-    //             this.goSouth()
-    //             await this.waitForPromise(6000)
-    //           }, 5000) 
-               
-    //           console.log("S")
-
-    //           break;
-    //         case "E" :
-    //           setTimeout(async () => {
-    //             this.goEast()
-    //             await this.waitForPromise(6000)
-
-    //           }, 5000)
-    //           console.log("E")
-
-    //           break
-    //         case "W" :
-    //           setTimeout(async () => {
-    //             this.goWest()
-    //             await this.waitForPromise(6000)
-
-    //           }, 5000)
-    //           console.log("W")
-
-    //           break
-    //         default:
-              
-    //           console.log('end of the line')
-    //       }
-    //     })
-        
-         
-    // }, 3000)
-      
+    }, 4000) 
   }
 
   increaseBump = () => {
@@ -167,10 +118,8 @@ class App extends React.Component {
   }
 
   updateTravelLog = () => {
-    console.log(this.state.roombaLocation.join(","))
     let arr = this.state.travelLog
     arr.push(this.state.roombaLocation.join(","))
-    console.log(arr)
     this.setState({
       travelLog: arr
     })
@@ -246,9 +195,6 @@ class App extends React.Component {
   }
 
   render() {
-    // if(!this.state.autoPilotRunning) {
-    //   this.autoPilot()
-    // }
     return (
       <div className="App">
         <header>DJ Roomba in the House!</header>
@@ -262,7 +208,15 @@ class App extends React.Component {
           actionLog={this.state.actionLog}
           checkForDirt={(e) => this.checkForDirt()}
         />
-        <StatBox data={this.state}/>
+        <StatBox
+          turnCounter = {this.state.turnCounter}
+          roombaLocation = {this.state.roombaLocation} 
+          movementCounter={this.state.movementCounter}
+          dirtCollected={this.state.dirtCollected}
+          dirtLocations={this.state.dirtLocations}
+          bumps={this.state.bumpCounter}
+          actionLog={this.state.actionLog}
+        />
         <button 
           onClick={()=> {
             this.goNorth()
