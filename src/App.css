@@ -37,12 +37,23 @@
   }
 }
 
+#mapTable {
+  margin:auto;
+  background-image: url('./Assets/beach.jpg');
+  background-size: cover;
+}
+
+.generalSquare { 
+  width: 5vw;
+  height: 5vw;
+}
+
 .generalRoombaSquare {
 	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
-	animation-duration: 2s;
+	animation-duration: 0.2s;
 }
 
 @keyframes fadeInOpacity {
@@ -61,33 +72,73 @@
 
 .dirtSquare {
   background-image: url('./Assets/dirtSquare.jpg');
-  width: 2rem;
-  height: 2rem;
+
   background-position: center;
 }
 
 .roombaSquare {
   background-image: url('./Assets/roombaKnife.png');
-  width: 2rem;
-  height: 2rem;
+
   background-position: center;
   background-size: cover;
 }
 
 .regularTreasureMapSquare {
   background-image: url('./Assets/parchmentSquare.jpg');
-  width: 2rem;
-  height: 2rem;
+
   background-position: center;
 }
 
 .fireSquare {
   background-image: url('./Assets/fire.jpg');
-  width: 2rem;
-  height: 2rem;
+
   background-position: center;
 }
 
 .treasureMapSquare {
   width: 2rem;
+}
+
+#mapAndStatBoxDiv {
+  display:flex;
+  flex-direction: column;
+}
+
+#statTable {
+  width: 90%;
+  padding: 3vw;
+  margin: auto;
+  font-size: 10px;
+}
+
+#statTable th {
+  padding: unset !important;
+}
+
+.statTableRow {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+@media only screen and (min-width: 375px) {
+  #statTable {
+    width: unset;
+    font-size: unset;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #statTable {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #mapAndStatBoxDiv {
+    flex-direction: unset;
+    justify-content: space-evenly;
+  }
 }

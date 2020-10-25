@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css'; 
 import Map from './Components/Map'
 import StatBox from './Components/StatBox'
+import StatTable from './Components/StatTable'
 
 let data = require('./roombaInstructionData.json')
 
@@ -202,55 +203,39 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header>DJ Roomba in the House!</header>
-        <Map 
-          roombaLocation={this.state.roombaLocation}
-          maxX={this.state.mapMaxX} 
-          maxY={this.state.mapMaxY}
-          dirtLocations={this.state.dirtLocations}
-          addDirt={() => this.increaseDirtCollected()}
-          travelLog={this.state.travelLog}
-          actionLog={this.state.actionLog}
-          checkForDirt={(e) => this.checkForDirt()}
-        />
-        <StatBox
-          turnCounter = {this.state.turnCounter}
-          roombaLocation = {this.state.roombaLocation.join(",")} 
-          movementCounter={this.state.movementCounter}
-          dirtCollected={this.state.dirtCollected}
-          dirtLocations={this.state.dirtLocations}
-          bumps={this.state.bumpCounter}
-          actionLog={this.state.actionLog}
-        />
-        <button 
-          onClick={()=> {
-            this.goNorth()
-          }}
-        >
-          North
-        </button>
-        <button 
-          onClick={()=> {
-            this.goSouth()
-          }}
-        >
-          South
-        </button>
-        <button 
-          onClick={()=> {
-            this.goEast()
-          }}
-        >
-          East
-        </button>
-        <button 
-          onClick={()=> {
-            this.goWest()
-          }}
-        >
-          West
-        </button>
-
+        <h1>Roomba Dirt Hunt!</h1>
+        <div id="mapAndStatBoxDiv" className="nes-container is-rounded is-dark">
+          <Map 
+            roombaLocation={this.state.roombaLocation}
+            maxX={this.state.mapMaxX} 
+            maxY={this.state.mapMaxY}
+            dirtLocations={this.state.dirtLocations}
+            addDirt={() => this.increaseDirtCollected()}
+            travelLog={this.state.travelLog}
+            actionLog={this.state.actionLog}
+            checkForDirt={(e) => this.checkForDirt()}
+          />
+          <StatBox
+            turnCounter = {this.state.turnCounter}
+            roombaLocation = {this.state.roombaLocation.join(",")} 
+            movementCounter={this.state.movementCounter}
+            dirtCollected={this.state.dirtCollected}
+            dirtLocations={this.state.dirtLocations}
+            bumps={this.state.bumpCounter}
+            actionLog={this.state.actionLog}
+          />
+        </div>
+        <div id="statTableDiv">
+          <StatTable 
+            turnCounter = {this.state.turnCounter}
+            roombaLocation = {this.state.roombaLocation.join(",")} 
+            movementCounter={this.state.movementCounter}
+            dirtCollected={this.state.dirtCollected}
+            dirtLocations={this.state.dirtLocations}
+            bumps={this.state.bumpCounter}
+            actionLog={this.state.actionLog}
+          />
+        </div>
       </div>
     );
   }

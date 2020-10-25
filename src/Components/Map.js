@@ -140,7 +140,7 @@ class Map extends React.Component {
 
     return (
       <div>
-        <table>
+        <table id="mapTable">
           <tbody>
             {this.printGrid(arrayOfMapSquares)}
           </tbody>

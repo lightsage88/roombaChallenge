@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-class StatBox extends React.Component {
+class StatTable extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -35,7 +35,7 @@ class StatBox extends React.Component {
 
     const turnRows = this.state.turnCollection.map((el, idx) => {
       return(
-        <tr>
+        <tr className="statTableRow">
           <td>{ el.turn }</td>
           <td>{ el.roombaLocation }</td>
           <td>{ el.action }</td>
@@ -45,26 +45,22 @@ class StatBox extends React.Component {
       )
     })
 
-    const dirtLocations = this.props.dirtLocations.map((el, idx) => {
-      return (
-        <li key={idx}>{JSON.stringify(el)}</li>
-      )
-    })
 
     return (
-      <div id="statBoxDiv">
-        <h1>Stat Box</h1>
-        <p>Total Movements: {this.props.movementCounter}</p>
-        <p>Dirt Collected: {this.props.dirtCollected}</p>
-
-        <p>Dirt Locations:</p>
-        <ul>
-          {dirtLocations}
-        </ul>
-        <p>Bumps: {this.props.bumps}</p>
+      <div className="nes-table-responsive">
+        <table id="statTable" className="nes-table is-bordered is-centered">
+          <tr>
+            <th>STEP</th>
+            <th>Roomba Location</th>
+            <th>Action</th>
+            <th>Dirt Collected</th>
+            <th>Wall Hits</th>
+          </tr>
+          {turnRows}
+        </table>
       </div>
     )
   }
 }
 
-export default StatBox
+export default StatTable
