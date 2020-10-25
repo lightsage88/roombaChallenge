@@ -15,10 +15,6 @@ class Map extends React.Component {
     }
   }
 
-  alertToAddDirt = () => {
-    console.log('alertToAddDirtRunning')
-    this.props.addDirt()
-  }
 
   componentDidMount = () => {
     this.convertTravelLogEntries(this.props.travelLog)
@@ -34,13 +30,7 @@ class Map extends React.Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    console.log('componentUpdating', prevProps, this.props)
-    //1. putting setState chunk here crashes everyhing
-    //2. Lets try doing a comparison with prevProps
-    //2a. That seems successful!
-
     if(this.props.travelLog.length !== this.state.travelLog.length && !this.state.travelLogRunning) {
-      console.log('detected change in TL')
       this.setState({travelLogRunning: true})
       this.convertTravelLogEntries(this.props.travelLog)
     }
@@ -91,11 +81,9 @@ class Map extends React.Component {
   }
 
   previouslyHadRoomba = (x, y) => {
-    //look through travelLog, make arrays out of each "ENTRY"
     let bool = false
 
     let array = this.state.travelLog.slice(0, this.state.travelLog.length - 1)
-    console.log('ze array', array)
     array.forEach(el => {
       if(el[0] === x + 1 &&
         el[1] === y + 1 &&
@@ -103,14 +91,10 @@ class Map extends React.Component {
           bool = true
         } 
     })
-    //say that if c, i match any of them, EXCEPT THE LAST ENTRY,
-    //return true
     return bool
   }
 
   hasRoomba = (x, y) => {
-    console.log('hasDirt running...current roomba location is: ' + this.state.roombaLocation)
-    console.log('coordinates of square are: ' + x + ', ' + y)
     if(this.state.roombaLocation[0] === x + 1 &&
       this.state.roombaLocation[1] === y + 1) {
         return true
@@ -125,7 +109,6 @@ class Map extends React.Component {
 
 
   render() {
-    console.log(this.state.dirtLocations, this.props.roombaLocation)
     const length = this.state.length
     const height = this.state.height
     let randomKeyGen = Math.floor((Math.random() * 100000) + 1)
@@ -135,9 +118,6 @@ class Map extends React.Component {
       let row = []
 
       for(let c = 0; c < height; c++) {
-        console.log("coordinates being planned", c, i)
-        //check for dirt collected
-        // this.checkForDirtInMap()
         row.push(
           <td>
             <Square 

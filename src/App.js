@@ -20,90 +20,115 @@ class App extends React.Component {
       foundDirtLocations: [],
       drivingInstructions: data.drivingInstructions,
       movementCounter: 0,
-      dirtCollected: 0
+      dirtCollected: 0,
+      autoPilotRunning: false
     }
   }
 
   componentDidMount = () => {
-    console.log(data)
     const roombaStart = data.initialRoombaLocation
   
     this.setState({
       roombaLocation: data.initialRoombaLocation,
       travelLog: [roombaStart.join(",")]
     })    
-    // this.autoPilot()
+    this.autoPilot()
   }
 
-  componentDidUpdate = (prevState) => {
-    // if(this.state.roombaLocation != prevState.roombaLocation) {
-    //   let travelLogArr = this.state.travelLog
-    //   travelLogArr.push(this.state.roombaLocation)
-    //   this.setState({
-    //     travelLog: travelLogArr
-    //   })
-    // }
-    // let dirtSquares = this.state.dirtLocations
-    // if(this.state.roombaLocation != prevState.roombaLocation &&
-    //   this.state.dirtCollected <= dirtSquares.length
-    //   ) {
-    //   dirtSquares.forEach(el => {
-    //     console.log('CDUpdate', el, this.state.roombaLocation)
-        
-    //     if(this.state.roombaLocation[0] === el[0] && this.state.roombaLocation[1] === el[1]) {
-    //       console.log('yeehaw')
-    //       alert(this.state.roombaLocation)
-    //       this.setState({
-    //         dirtCollected: this.state.dirtCollected++
-    //       })
-    //     }
-    //   })
-    // }
+  waitForPromise = (ms) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(ms)
+      }, ms)
+    })
   }
 
-  autoPilot = () => {
-    let counter = 0
+ 
+
+  autoPilot = async () => {
+
+    const waitForPromise = (ms) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('waiting in WAITFORPROMISE')
+          resolve(ms)
+        }, ms)
+      })
+    }
+
     let commands = this.state.drivingInstructions
-    setTimeout(() => {
-        console.log('howdy', this.state.drivingInstructions)
-        commands.forEach(el => {
-          switch(el) {
-            case "N" :
-              setTimeout(() => {
-                              this.goNorth()
+    setTimeout(async() => {
+      for(let i = 0; i <= commands.length; i++) {
+        console.log(commands[i])
+        if(commands[i] === "N") {
+          this.goNorth()
+          await this.waitForPromise(2000)
+        }
 
-              }, 5000) 
-              console.log("N")
-              break
-            case "S" :
-              setTimeout(() => {
-                this.goSouth()
-              }, 5000) 
+        if(commands[i] === "S") {
+          this.goSouth()
+          await this.waitForPromise(2000)
+        }
+
+        if(commands[i] === "E") {
+          this.goEast()
+          await this.waitForPromise(2000)
+        }
+
+        if(commands[i] === "W") {
+          this.goWest()
+          await this.waitForPromise(2000)
+        }
+
+      }
+    }, 4000)
+    // setTimeout(() => {
+    //     console.log('howdy', this.state.drivingInstructions)
+    //     commands.forEach(el => {
+    //       switch(el) {
+    //         case "N" :
+    //           setTimeout(async () => {
+    //             this.goNorth()
+    //             await this.waitForPromise(6000)
+
+    //           }, 5000) 
+    //           console.log("N")
+    //           break
+    //         case "S" :
+    //           setTimeout(async () => {
+    //             this.goSouth()
+    //             await this.waitForPromise(6000)
+    //           }, 5000) 
                
-              console.log("S")
+    //           console.log("S")
 
-              break;
-            case "E" :
-              setTimeout(() => {
-                this.goEast()
-              }, 5000)
-              console.log("E")
+    //           break;
+    //         case "E" :
+    //           setTimeout(async () => {
+    //             this.goEast()
+    //             await this.waitForPromise(6000)
 
-              break
-            case "W" :
-              setTimeout(() => {
-                this.goWest()
-              }, 5000)
-              console.log("W")
+    //           }, 5000)
+    //           console.log("E")
 
-              break
-            default:
-              console.log('end of the line')
-          }
-        })
+    //           break
+    //         case "W" :
+    //           setTimeout(async () => {
+    //             this.goWest()
+    //             await this.waitForPromise(6000)
+
+    //           }, 5000)
+    //           console.log("W")
+
+    //           break
+    //         default:
+              
+    //           console.log('end of the line')
+    //       }
+    //     })
         
          
-    }, 3000)
+    // }, 3000)
       
   }
 
@@ -167,7 +192,7 @@ class App extends React.Component {
     })
   }
 
-  goNorth =() => {
+  goNorth = () => {
     let currentLocation = this.state.roombaLocation
     if(currentLocation[1] != this.state.mapMaxY) {
       currentLocation[1]++
@@ -221,6 +246,9 @@ class App extends React.Component {
   }
 
   render() {
+    // if(!this.state.autoPilotRunning) {
+    //   this.autoPilot()
+    // }
     return (
       <div className="App">
         <header>DJ Roomba in the House!</header>
@@ -237,7 +265,6 @@ class App extends React.Component {
         <StatBox data={this.state}/>
         <button 
           onClick={()=> {
-            console.log('yo')
             this.goNorth()
           }}
         >
@@ -245,7 +272,6 @@ class App extends React.Component {
         </button>
         <button 
           onClick={()=> {
-            console.log('yo')
             this.goSouth()
           }}
         >
@@ -253,7 +279,6 @@ class App extends React.Component {
         </button>
         <button 
           onClick={()=> {
-            console.log('yo')
             this.goEast()
           }}
         >
@@ -261,7 +286,6 @@ class App extends React.Component {
         </button>
         <button 
           onClick={()=> {
-            console.log('yo')
             this.goWest()
           }}
         >
