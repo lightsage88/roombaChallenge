@@ -4,6 +4,8 @@ import dirtSquare from '../Assets/dirtSquare.jpg'
 import Roomba from './Roomba'
 let data = require('../roombaInstructionData.json')
 
+//todo: we are doing the dirt finding on the App component
+//may need to turn this back into a simple function
 
 class Square extends React.Component {
   constructor() {
@@ -13,7 +15,6 @@ class Square extends React.Component {
 
   componentDidMount = () => {
     if(this.props.hasRoomba && this.props.hasDirt) {
-      console.log("HOLY MOLY")
       // this.props.foundDirt()
     }
   }

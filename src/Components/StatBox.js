@@ -24,7 +24,7 @@ class StatBox extends React.Component {
     return (
       <div>
         <h1>Stat Box</h1>
-
+        <p>Total Movements: {this.state.data.movementCounter}</p>
         <p>Dirt Collected: {this.state.data.dirtCollected}</p>
 
         <p>Dirt Locations: {

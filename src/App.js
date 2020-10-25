@@ -17,6 +17,7 @@ class App extends React.Component {
       mapMaxY: data.roomDimensions[1],
       mapMaxX: data.roomDimensions[0],
       dirtLocations: data.dirtLocations,
+      foundDirtLocations: [],
       drivingInstructions: data.drivingInstructions,
       movementCounter: 0,
       dirtCollected: 0
@@ -122,13 +123,21 @@ class App extends React.Component {
     })
     this.updateTravelLog()
     this.updateActionLog(action)
-    // this.checkForDirt()
+    this.checkForDirt()
   }
 
   checkForDirt = () => {
-    console.log("checkForDirt Running")
-    this.setState({
-      dirtCollected: this.dirtCollected++
+    let foundDirtLocArray = this.state.foundDirtLocations
+    this.state.dirtLocations.forEach(el => {
+      if(this.state.roombaLocation[0] === el[0] &&
+        this.state.roombaLocation[1] === el[1] &&
+        !foundDirtLocArray.includes(el)) {
+          foundDirtLocArray.push(el)
+          this.setState({
+            foundDirtLocations: foundDirtLocArray,
+            dirtCollected: this.state.dirtCollected + 1
+          })
+        }
     })
   }
 
