@@ -9,18 +9,24 @@ class StatBox extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    let turnCollectionArr = [{
+  componentDidUpdate = (prevProps) => {
+    if(this.props.turnCounter != prevProps.turnCounter) {
+      console.log(this.props)
+      console.log(typeof(this.props.roombaLocation))
+    let arr = this.state.turnCollection
+    const rL = this.props.roombaLocation
+
+    let turnCollectionObject = {
       turn: this.props.turnCounter,
-      roombaLocation: this.props.roombaLocation,
-      action: this.props.actionLog[0],
+      roombaLocation: rL,
+      action: this.props.actionLog[this.props.actionLog.length - 1],
       totalDirtCollected: this.props.dirtCollected,
       totalWallHits: this.props.bumps
-    }]
+    }
+    arr.push(turnCollectionObject)
 
-    this.setState({
-      turnCollection: turnCollectionArr
-    })
+    this.setState({ turnCollection: arr })
+    }
   }
  
   
@@ -32,10 +38,6 @@ class StatBox extends React.Component {
         <li key={idx}>{JSON.stringify(el)}</li>
       )
     })
-
-    // const dataRows = this.props.forEach(el => {
-    //   console.log(el)
-    // })
 
     return (
       <div>

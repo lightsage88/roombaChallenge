@@ -117,6 +117,10 @@ class App extends React.Component {
     })
   }
 
+  updateRoombaLocationLog = () => {
+
+  }
+
   updateTravelLog = () => {
     let arr = this.state.travelLog
     arr.push(this.state.roombaLocation.join(","))
@@ -140,6 +144,7 @@ class App extends React.Component {
       dirtCollected: dirtPile
     })
   }
+
 
   goNorth = () => {
     let currentLocation = this.state.roombaLocation
@@ -210,7 +215,7 @@ class App extends React.Component {
         />
         <StatBox
           turnCounter = {this.state.turnCounter}
-          roombaLocation = {this.state.roombaLocation} 
+          roombaLocation = {this.state.roombaLocation.join(",")} 
           movementCounter={this.state.movementCounter}
           dirtCollected={this.state.dirtCollected}
           dirtLocations={this.state.dirtLocations}
