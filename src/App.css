@@ -53,9 +53,11 @@
 }
 
 .generalSquare { 
-  width: 5vw;
-  height: 5vw;
+  width: 6vw;
+  height: 6vw;
 }
+
+
 
 .generalRoombaSquare {
 	opacity: 1;
@@ -151,6 +153,12 @@
   #statTable {
     width: unset;
     font-size: unset;
+  }
+}
+
+@media only screen and (min-width: 425px) {
+  #statTable th {
+    padding: 1vw !important;
   }
 }
 
