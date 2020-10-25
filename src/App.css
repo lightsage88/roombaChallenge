@@ -39,12 +39,12 @@
 
 .regularTreasureMapSquare {
   background-image: url('./Assets/parchmentSquare.jpg');
-  width: 5rem;
-  height: 5rem;
+  width: 2rem;
+  height: 2rem;
   background-position: center;
 
 }
 
 .treasureMapSquare {
-  width: 5rem;
+  width: 2rem;
 }

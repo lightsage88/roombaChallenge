@@ -1,7 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import update from 'immutability-helper' 
+import './App.css'; 
 import Map from './Components/Map'
+import StatBox from './Components/StatBox'
 
 let data = require('./roombaInstructionData.json')
 
@@ -9,8 +10,9 @@ class App extends React.Component {
   constructor() { 
     super()
     this.state = {
-      roombaLocation: data.initialRoombaLocation,
-      travelLog: [data.initialRoombaLocation],
+      roombaLocation: [],
+      travelLog: [],
+      actionLog: [" "],
       bumpCounter: 0,
       mapMaxY: data.roomDimensions[1],
       mapMaxX: data.roomDimensions[0],
@@ -23,18 +25,23 @@ class App extends React.Component {
 
   componentDidMount = () => {
     console.log(data)
-    
+    const roombaStart = data.initialRoombaLocation
+  
+    this.setState({
+      roombaLocation: data.initialRoombaLocation,
+      travelLog: [roombaStart.join(",")]
+    })    
     // this.autoPilot()
   }
 
   componentDidUpdate = (prevState) => {
-    if(this.state.roombaLocation != prevState.roombaLocation) {
-      let travelLogArr = this.state.travelLog
-      travelLogArr.push(this.state.roombaLocation)
-      this.setState({
-        travelLog: travelLogArr
-      })
-    }
+    // if(this.state.roombaLocation != prevState.roombaLocation) {
+    //   let travelLogArr = this.state.travelLog
+    //   travelLogArr.push(this.state.roombaLocation)
+    //   this.setState({
+    //     travelLog: travelLogArr
+    //   })
+    // }
     // let dirtSquares = this.state.dirtLocations
     // if(this.state.roombaLocation != prevState.roombaLocation &&
     //   this.state.dirtCollected <= dirtSquares.length
@@ -107,11 +114,36 @@ class App extends React.Component {
     })
   }
 
-  increaseMovementCounter = () => {
+  increaseMovementCounter = (action) => {
     let moves = this.state.movementCounter
     moves++
     this.setState({
       movementCounter: moves
+    })
+    this.updateTravelLog()
+    this.updateActionLog(action)
+    // this.checkForDirt()
+  }
+
+  checkForDirt = () => {
+    console.log("checkForDirt Running")
+  }
+
+  updateTravelLog = () => {
+    console.log(this.state.roombaLocation.join(","))
+    let arr = this.state.travelLog
+    arr.push(this.state.roombaLocation.join(","))
+    console.log(arr)
+    this.setState({
+      travelLog: arr
+    })
+  }
+
+  updateActionLog = (action) => {
+    let arr = this.state.actionLog
+    arr.push(action)
+    this.setState({
+      actionLog: arr
     })
   }
 
@@ -123,20 +155,19 @@ class App extends React.Component {
     })
   }
 
-
-  goNorth = () => {
+  goNorth =() => {
     let currentLocation = this.state.roombaLocation
     if(currentLocation[1] != this.state.mapMaxY) {
       currentLocation[1]++
       this.setState({
         roombaLocation: currentLocation
       })
-      this.increaseMovementCounter()
+      this.increaseMovementCounter("N")
     } else {
-      console.log('make with the bump')
       this.increaseBump()
     }
   }
+ 
 
   goSouth = () => {
     let currentLocation = this.state.roombaLocation
@@ -145,7 +176,7 @@ class App extends React.Component {
       this.setState({
         roombaLocation: currentLocation
       })
-      this.increaseMovementCounter()
+      this.increaseMovementCounter("S")
     } else {
       this.increaseBump()
     }
@@ -158,7 +189,7 @@ class App extends React.Component {
       this.setState({
         roombaLocation: currentLocation
       })
-      this.increaseMovementCounter()
+      this.increaseMovementCounter("E")
     } else {
       this.increaseBump()
     }
@@ -171,7 +202,7 @@ class App extends React.Component {
       this.setState({
         roombaLocation: currentLocation
       })
-      this.increaseMovementCounter()
+      this.increaseMovementCounter("W")
     } else {
       this.increaseBump()
     }
@@ -187,8 +218,10 @@ class App extends React.Component {
           maxY={this.state.mapMaxY}
           dirtLocations={this.state.dirtLocations}
           addDirt={() => this.increaseDirtCollected()}
+          travelLog={this.state.travelLog}
+          actionLog={this.state.actionLog}
         />
-        {/* <StatBox data={}/> */}
+        <StatBox data={this.state}/>
         <button 
           onClick={()=> {
             console.log('yo')

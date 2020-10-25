@@ -7,8 +7,10 @@ class Map extends React.Component {
     this.state = {
       length: null,
       height: null,
-      dirtLocation: [],
-      roombaLocations: []
+      dirtLocations: [],
+      roombaLocation: [],
+      travelLog: [],
+      actionLog: []
     }
   }
 
@@ -18,29 +20,33 @@ class Map extends React.Component {
   }
 
   componentDidMount = () => {
-    // console.log(this.props)
-    // let roombaLocArray = []
-    // roombaLocArray.push(this.props.roombaLocation)
 
     this.setState({
       length: this.props.maxX,
       height: this.props.maxY,
       dirtLocations: this.props.dirtLocations,
+      travelLog: this.props.travelLog,
+      actionLog: this.props.actionLog,
+      roombaLocation: this.props.roombaLocation
       // roombaLocations: roombaLocArray
 
     })
   }
 
   componentDidUpdate = (prevProps) => {
-    if(this.props !== prevProps) {
-      // let roombaLocArray = [this.state.roombaLocations]
-      // roombaLocArray.push(this.props.roombaLocation)
-      console.log(this.props)
+    //1. putting setState chunk here crashes everyhing
+    //2. Lets try doing a comparison with prevProps
+    //2a. That seems successful!
+    if(prevProps !== this.props) {
       this.setState({
         length: this.props.maxX,
         height: this.props.maxY,
         dirtLocations: this.props.dirtLocations,
+        travelLog: this.props.travelLog,
+        actionLog: this.props.actionLog,
+        roombaLocation: this.props.roombaLocation
         // roombaLocations: roombaLocArray
+  
       })
     }
   }
@@ -51,6 +57,11 @@ class Map extends React.Component {
     return arr.map(row => {
       return <tr>{row}</tr>
     })
+  }
+
+  hasRoomba = (c, i) => {
+    console.log('hasDirt running...current roomba location is: ' + this.state.roombaLocation)
+    console.log('coordinates of square are: ' + c + ', ' + i)
   }
 
 
@@ -65,6 +76,7 @@ class Map extends React.Component {
       let row = []
 
       for(let c = 0; c < height; c++) {
+        console.log("coordinates being planned", c, i)
         row.push(
           <td>
             <Square 
@@ -72,6 +84,7 @@ class Map extends React.Component {
               y={i}
               key={randomKeyGen}
               roombaLocation={this.props.roombaLocation}
+              hasRoomba={this.hasRoomba(c, i)}
             />
           </td>
         )
