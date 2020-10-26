@@ -10,7 +10,6 @@ class App extends React.Component {
   constructor() { 
     super()
     this.state = {
-      // roombaLocation: [],
       roombaLocation: data.initialRoombaLocation,
       travelLog: [],
       actionLog: [" "],
@@ -30,7 +29,6 @@ class App extends React.Component {
     const roombaStart = data.initialRoombaLocation
   
     this.setState({
-      // roombaLocation: data.initialRoombaLocation,
       travelLog: [roombaStart.join(",")]
     })    
     this.autoPilot()
@@ -47,16 +45,8 @@ class App extends React.Component {
  
 
   autoPilot = async () => {
-
-    const waitForPromise = (ms) => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(ms)
-        }, ms)
-      })
-    }
-
     let commands = this.state.drivingInstructions
+
     setTimeout(async() => {
       for(let i = 0; i <= commands.length; i++) {
         this.setState({ turnCounter: this.state.turnCounter + 1 })
@@ -118,10 +108,6 @@ class App extends React.Component {
     })
   }
 
-  updateRoombaLocationLog = () => {
-
-  }
-
   updateTravelLog = () => {
     let arr = this.state.travelLog
     arr.push(this.state.roombaLocation.join(","))
@@ -137,15 +123,6 @@ class App extends React.Component {
       actionLog: arr
     })
   }
-
-  increaseDirtCollected = (data) => {
-    let dirtPile = this.state.dirtCollected
-    dirtPile++
-    this.setState({
-      dirtCollected: dirtPile
-    })
-  }
-
 
   goNorth = () => {
     let currentLocation = this.state.roombaLocation
@@ -210,10 +187,8 @@ class App extends React.Component {
             maxX={this.state.mapMaxX} 
             maxY={this.state.mapMaxY}
             dirtLocations={this.state.dirtLocations}
-            addDirt={() => this.increaseDirtCollected()}
             travelLog={this.state.travelLog}
             actionLog={this.state.actionLog}
-            checkForDirt={(e) => this.checkForDirt()}
           />
           <StatBox
             turnCounter = {this.state.turnCounter}
@@ -236,8 +211,8 @@ class App extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

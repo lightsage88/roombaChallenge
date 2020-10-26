@@ -51,7 +51,7 @@ class Map extends React.Component {
     let newArr = []
     let a = arr
     let b = Array.from(a)
-    newArr= b.map(el => {
+    newArr = b.map(el => {
       return el.split`,`.map(x => +x)
     })
     this.setState({
@@ -100,11 +100,6 @@ class Map extends React.Component {
         return false
       }
   }
-
-  checkForDirtInMap = () => {
-    this.props.checkForDirt()
-  }
-
 
   render() {
     const length = this.state.length

@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Square(props) {
-  console.log('SQUARE', props)
   let classPick = "dirtSquare"
   if (props.hasDirt && props.hadRoomba) {
     classPick = "dugSquare"
