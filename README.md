@@ -1,68 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- # book-thing.io
 
-## Available Scripts
+Initial wireframes:
 
-In the project directory, you can run:
+https://wireframe.cc/x0a8I9
 
-### `npm start`
+https://wireframe.cc/6oVXTU -->
+# Roomba Dirt Hunt!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A web-application that shows the valiant efforts of a cute knife-wielding roomba in search of dirt on a grid. During development, arrow controls were implemented to create a game application. Further iterations on this concept will be implemented to create a game complete with leader boards and enhanced graphics.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Motivation
 
-### `npm test`
+I was given a challenge to create a grid that contained dirt piles on certain squares. Then I was asked to give a set of directions for the roomba to execute on auto-pilot. During its journey, I was to update its status and progress. A stat-box displays general information, and a stat-table displays the results of each turn.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Screenshots
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Full Screen: ![fullScreen](public/screenshots/screenshot3.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Mobile Map: ![mobileMap](public/screenshots/screenshot1.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Mobile Stat-Table ![mobileStatTable](public/screenshots/screenshot2.png)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Environment Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. You'll need to clone <INSERT LINK> and run 
+```
+npm install
+```
+then
+```
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Do the same for this package.
 
-## Learn More
+3. Open up a window at localhost:3000
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Running the tests
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+To run all tests, run
+```
+npm test
+```
 
-### Analyzing the Bundle Size
+## Built With
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Front-End
+* React
 
-### Making a Progressive Web App
+### Testing
+* Jest
+* Enzyme
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Features
 
-### Advanced Configuration
+* Create a list of characters
+* See comic book series belonging to the characters you've chosen
+* Use links to potentially buy series you're interested in
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Running Project Link
 
-### Deployment
+- [Live](https://infinite-journey-91193.herokuapp.com/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Authors
 
-### `npm run build` fails to minify
+* **Adrian Rosales** - ** - Fullstack Web Development
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Acknowledgments
+
+* **Starline** - ** - For the use of their art for the 'Search' page.
+- [Art](https://www.freepik.com/free-photos-vectors/background")
