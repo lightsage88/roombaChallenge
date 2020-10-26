@@ -52,27 +52,12 @@ npm test
 
 ### Front-End
 * React
+* NES.css
 
 ### Testing
 * Jest
 * Enzyme
 
-## Features
-
-* Create a list of characters
-* See comic book series belonging to the characters you've chosen
-* Use links to potentially buy series you're interested in
-
-## Running Project Link
-
-- [Live](https://infinite-journey-91193.herokuapp.com/)
-
 ## Authors
 
-* **Adrian Rosales** - ** - Fullstack Web Development
-
-
-## Acknowledgments
-
-* **Starline** - ** - For the use of their art for the 'Search' page.
-- [Art](https://www.freepik.com/free-photos-vectors/background")
+* **Adrian Rosales** - ** - [Fullstack Web Development](http://www.adrian-rosales.tech)
