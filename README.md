@@ -53,4 +53,4 @@ npm test
 
 ## Authors
 
-* **Adrian Rosales** - ** - [Fullstack Web Development](http://www.adrian-rosales.tech)
+**Adrian Rosales** - [Fullstack Web Developer](http://www.adrian-rosales.tech)
