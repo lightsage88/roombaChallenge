@@ -1,2 +1,11 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: VnhR7SoT0fjJQGNX0zu4wpKt0HD2raQEPON4F3MzlOnnajK0UJZJiyp8Bk2zaXtJK9MoiJR4jjJnm81fgYcCbRsofmOXM4/HqIIGX3cj9Wn7RC8m07T4yBQHItsf4gKFdW9gvF7rc0v1sW8LqhFGjGmOqqUOdQF8cc+TYz9QYhk0sF37dfk6heIYnDJ0TSphlDxGnw00v1LKdQh79b5zpXi2nX3peXzxiIHtz/uuxFO2BJsbixL+AMyxyekdFH1UEbKN8foymBeXp06/3FnvQP5dTt1hFDjI34KPTWmjDEgVXokfaITuhCONwCY1wGHR75LpfnjJ/JfqKCtEZBpizr3T3gn9fuknYEcALyCZDMW9UhtdYErw/3q4l7KKw9Jz2sbxaWKXQ8vshr1LkYBhGDRmZkQusc4KTZohC3GNVBCD7OrbE/LQDVWKfLIl0grmKCloQGCli+X++BjUdBfgYPjAa4pnnQjCHiPAoZCvSinbBfZnAUJg/wrNPok5LVjxDGOMyl2m+X2fubzrZvs4ZAXR0X/BtdEzuECuI2yyOoTZXRhNIpu1+423JybLF4Tm1C2XBUHkqqFnQQxMU8239Jj83OdnM1yi/uPH3FxpvvMtUXJ7XAAWW4bmmftFCaDDGKJehOPIdNFcyK0EzDYrk9gey3KpM++dyv3rcKc3Tp0=
+  app: still-badlands-50092
+  on:
+    repo: lightsage88/roombaChallenge
+    branch: main
+  skip_cleanup: 'true'
