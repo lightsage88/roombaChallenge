@@ -10,7 +10,7 @@ class StatTable extends React.Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    if(this.props.turnCounter != prevProps.turnCounter) {
+    if(this.props.turnCounter !== prevProps.turnCounter) {
     let arr = this.state.turnCollection
     const rL = this.props.roombaLocation
 
@@ -33,7 +33,7 @@ class StatTable extends React.Component {
 
     const turnRows = this.state.turnCollection.map((el, idx) => {
       return(
-        <tr className="statTableRow">
+        <tr className="statTableRow" key={idx}>
           <td>{ el.turn }</td>
           <td>{ el.roombaLocation }</td>
           <td>{ el.action }</td>
@@ -46,15 +46,23 @@ class StatTable extends React.Component {
 
     return (
       <div className="nes-table-responsive">
+        <h2>Stat Table</h2>
         <table id="statTable" className="nes-table is-bordered is-centered">
-          <tr>
-            <th>STEP</th>
-            <th>Roomba Location</th>
-            <th>Action</th>
-            <th>Dirt Collected</th>
-            <th>Wall Hits</th>
-          </tr>
-          {turnRows}
+          <thead>
+            <tr>
+              <th>STEP</th>
+              <th>Roomba Location</th>
+              <th>Action</th>
+              <th>Dirt Collected</th>
+              <th>Wall Hits</th>
+            </tr>
+          </thead>
+          <tbody>
+            {turnRows}
+          </tbody>
+          <tfoot>
+
+          </tfoot>
         </table>
       </div>
     )

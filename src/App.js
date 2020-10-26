@@ -126,7 +126,7 @@ class App extends React.Component {
 
   goNorth = () => {
     let currentLocation = this.state.roombaLocation
-    if(currentLocation[1] != this.state.mapMaxY) {
+    if(currentLocation[1] !== this.state.mapMaxY) {
       currentLocation[1]++
       this.setState({
         roombaLocation: currentLocation
@@ -140,7 +140,7 @@ class App extends React.Component {
 
   goSouth = () => {
     let currentLocation = this.state.roombaLocation
-    if(currentLocation[1] != 1) {
+    if(currentLocation[1] !== 1) {
       currentLocation[1]--
       this.setState({
         roombaLocation: currentLocation
@@ -153,7 +153,7 @@ class App extends React.Component {
 
   goEast = () => {
     let currentLocation = this.state.roombaLocation
-    if(currentLocation[0] != this.state.mapMaxX) {
+    if(currentLocation[0] !== this.state.mapMaxX) {
       currentLocation[0]++
       this.setState({
         roombaLocation: currentLocation
@@ -166,7 +166,7 @@ class App extends React.Component {
 
   goWest = () => {
     let currentLocation = this.state.roombaLocation
-    if(currentLocation[0] != 1) {
+    if(currentLocation[0] !== 1) {
       currentLocation[0]--
       this.setState({
         roombaLocation: currentLocation

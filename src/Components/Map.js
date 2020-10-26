@@ -61,8 +61,8 @@ class Map extends React.Component {
   }
 
   printGrid = (arr) => {
-    return arr.map(row => {
-      return <tr>{row}</tr>
+    return arr.map((row, idx) => {
+      return <tr key={idx}>{row}</tr>
     })
   }
 
@@ -112,11 +112,12 @@ class Map extends React.Component {
 
       for(let c = 0; c < length; c++) {
         row.push(
-          <td>
+          <td          
+            key={randomKeyGen}
+          >
             <Square 
               x={c}
               y={i}
-              key={randomKeyGen}
               roombaLocation={this.props.roombaLocation}
               hasRoomba={this.hasRoomba(c, i)}
               hadRoomba={this.previouslyHadRoomba(c, i)}
