@@ -1,10 +1,3 @@
-<!-- # book-thing.io
-
-Initial wireframes:
-
-https://wireframe.cc/x0a8I9
-
-https://wireframe.cc/6oVXTU -->
 # Roomba Dirt Hunt!
 
 A web-application that shows the valiant efforts of a cute knife-wielding roomba in search of dirt on a grid. During development, arrow controls were implemented to create a game application. Further iterations on this concept will be implemented to create a game complete with leader boards and enhanced graphics.
@@ -51,12 +44,12 @@ npm test
 ## Built With
 
 ### Front-End
-* React
-* NES.css
+* [React](https://reactjs.org/)
+* [NES.css](https://nostalgic-css.github.io/NES.css/)
 
 ### Testing
-* Jest
-* Enzyme
+* [Jest](https://jestjs.io/)
+* [Enzyme](https://airbnb.io/projects/enzyme/)
 
 ## Authors
 
