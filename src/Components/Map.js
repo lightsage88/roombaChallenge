@@ -130,7 +130,6 @@ class Map extends React.Component {
       arrayOfMapSquares.push(row)
     }
 
-
     return (
       <div>
         <table id="mapTable">
