@@ -24,6 +24,14 @@ describe("Map Component", () => {
     expect(componentInstance.state.travelLogRunning).toEqual(false)
   })
 
+  it("calls printGrid upon mounting", () => {
+    const wrapper = shallow(<Map travelLog={[]}/>)
+    const componentInstance = wrapper.instance()
+    componentInstance.componentDidMount()
+    const printGridSpy = jest.spyOn(wrapper.instance(), "printGrid")
+    expect(printGridSpy).toHaveBeenCalled()
+  })
+
   it("hasDirt returns a true if argument integers are each one less than the value in the 2d array state item used in method", () => {
     const wrapper = shallow(<Map travelLog={[]}/>)
     const componentInstance = wrapper.instance()
@@ -35,7 +43,7 @@ describe("Map Component", () => {
     expect(value).toEqual(true)
   })
 
-  it("hasDirt returns a false if argument integers are not each one less than the value in the 2d array state item used in method", () => {
+  it("hasDirt return false if argument integers are not each one less than the value in the 2d array state item used in method", () => {
     const wrapper = shallow(<Map travelLog={[]}/>)
     const componentInstance = wrapper.instance()
     componentInstance.setState({
@@ -46,8 +54,55 @@ describe("Map Component", () => {
     expect(value).toEqual(false)
   })
 
-  //todo printgrid
   //todo hasroomba
+  it("hasRoomba returns true if argument integers are one less than the state.roombaLocation item", () => {
+    const wrapper = shallow(<Map travelLog={[]}/>)
+    const componentInstance = wrapper.instance()
+    componentInstance.setState({
+      ...componentInstance.state,
+      roombaLocation: [ 2, 2 ]
+    })
+    const value = componentInstance.hasRoomba(1,1)
+    expect(value).toEqual(true)
+  })
+
+  it("hasRoomba returns false if argument integers are not one less than the state.roombaLocation item", () => {
+    const wrapper = shallow(<Map travelLog={[]}/>)
+    const componentInstance = wrapper.instance()
+    componentInstance.setState({
+      ...componentInstance.state,
+      roombaLocation: [ 2, 2 ]
+    })
+    const value = componentInstance.hasRoomba(2,2)
+    expect(value).toEqual(false)
+  })
+
+  it("previouslyHadRoomba returns true if argument integers are one less than a given entry in the state.travelLog 2D array item", () => {
+    const wrapper = shallow(<Map travelLog={["1,1", "1,2", "2,2"]}/>)
+    const componentInstance = wrapper.instance()
+    componentInstance.setState({
+      ...componentInstance.state,
+      travelLog: ["1,1", "1,2", "2,2"]
+    })
+    componentInstance.componentDidMount()
+    componentInstance.convertTravelLogEntries(componentInstance.state.travelLog)
+    const value = componentInstance.previouslyHadRoomba(0,0)
+    expect(value).toEqual(true)
+  })
+
+  it("previouslyHadRoomba returns false if argument integers are NOT one less than a given entry in the state.travelLog 2D array item", () => {
+    const wrapper = shallow(<Map travelLog={["1,1", "1,2", "2,2"]}/>)
+    const componentInstance = wrapper.instance()
+    componentInstance.setState({
+      ...componentInstance.state,
+      travelLog: ["1,1", "1,2", "2,2"]
+    })
+    componentInstance.componentDidMount()
+    componentInstance.convertTravelLogEntries(componentInstance.state.travelLog)
+    const value = componentInstance.previouslyHadRoomba(10,9)
+    expect(value).toEqual(false)
+  })
+  //fix print grid test
   //todo previously had roomba
 
 })
