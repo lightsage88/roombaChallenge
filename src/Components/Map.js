@@ -18,7 +18,6 @@ class Map extends React.Component {
 
   componentDidMount = () => {
     this.convertTravelLogEntries(this.props.travelLog)
-
     this.setState({
       length: this.props.maxX,
       height: this.props.maxY,
@@ -45,9 +44,8 @@ class Map extends React.Component {
   
       })
     }
-
-    
   }
+
 
   convertTravelLogEntries = (arr) => {
     let newArr = []
@@ -114,10 +112,10 @@ class Map extends React.Component {
     let randomKeyGen = Math.floor((Math.random() * 100000) + 1)
     let arrayOfMapSquares = []
 
-    for(let i = length - 1; i >= 0; i--) {
+    for(let i = height - 1; i >= 0; i--) {
       let row = []
 
-      for(let c = 0; c < height; c++) {
+      for(let c = 0; c < length; c++) {
         row.push(
           <td>
             <Square 

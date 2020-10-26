@@ -222,7 +222,6 @@ class App extends React.Component {
             dirtCollected={this.state.dirtCollected}
             dirtLocations={this.state.dirtLocations}
             bumps={this.state.bumpCounter}
-            actionLog={this.state.actionLog}
           />
         </div>
         <div id="statTableDiv">
