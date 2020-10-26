@@ -1,6 +1,12 @@
 # Roomba Dirt Hunt!
 
-A web-application that shows the valiant efforts of a cute knife-wielding roomba in search of dirt on a grid. During development, arrow controls were implemented to create a game application. Further iterations on this concept will be implemented to create a game complete with leader boards and enhanced graphics.
+A web-application that shows the valiant efforts of a cute knife-wielding roomba in search of dirt on a grid. 
+
+
+## Future Features/Fixes 
+- During development, arrow controls were implemented to create a game application. 
+    - Further iterations on this concept will be implemented to create a game complete with leader boards and enhanced graphics.
+- Deployment to Heroku will join these new developments as well
 
 ## Motivation
 
