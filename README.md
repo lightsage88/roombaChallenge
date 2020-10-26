@@ -7,6 +7,7 @@ A web-application that shows the valiant efforts of a cute knife-wielding roomba
 - During development, arrow controls were implemented to create a game application. 
     - Further iterations on this concept will be implemented to create a game complete with leader boards and enhanced graphics.
 - Deployment to Heroku will join these new developments as well
+- Does not work on Internet Explorer at the moment
 
 ## Motivation
 
